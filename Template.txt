@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class template_mainClass
 {
-    public List<template_mainClassConfigData> data;
+    public Dictionary<int, template_mainClassConfigData> data;
 }
 
 [Serializable]

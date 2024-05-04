@@ -9,3 +9,14 @@ F:\CodeProjects\CSharp\ExcelConfigTest\obj\Debug\ExcelConfigTest.csproj.CoreComp
 F:\CodeProjects\CSharp\ExcelConfigTest\obj\Debug\ExcelConfigTest.csproj.CopyComplete
 F:\CodeProjects\CSharp\ExcelConfigTest\obj\Debug\ExcelConfigTest.exe
 F:\CodeProjects\CSharp\ExcelConfigTest\obj\Debug\ExcelConfigTest.pdb
+F:\CodeProjects\CSharp\ExcelConfigTool\bin\Debug\ExcelConfigTest.exe.config
+F:\CodeProjects\CSharp\ExcelConfigTool\bin\Debug\ExcelConfigTest.exe
+F:\CodeProjects\CSharp\ExcelConfigTool\bin\Debug\ExcelConfigTest.pdb
+F:\CodeProjects\CSharp\ExcelConfigTool\bin\Debug\ExcelDataReader.dll
+F:\CodeProjects\CSharp\ExcelConfigTool\bin\Debug\ExcelDataReader.pdb
+F:\CodeProjects\CSharp\ExcelConfigTool\bin\Debug\ExcelDataReader.xml
+F:\CodeProjects\CSharp\ExcelConfigTool\obj\Debug\ExcelConfigTest.csproj.AssemblyReference.cache
+F:\CodeProjects\CSharp\ExcelConfigTool\obj\Debug\ExcelConfigTest.csproj.CoreCompileInputs.cache
+F:\CodeProjects\CSharp\ExcelConfigTool\obj\Debug\ExcelConfigTest.csproj.CopyComplete
+F:\CodeProjects\CSharp\ExcelConfigTool\obj\Debug\ExcelConfigTest.exe
+F:\CodeProjects\CSharp\ExcelConfigTool\obj\Debug\ExcelConfigTest.pdb

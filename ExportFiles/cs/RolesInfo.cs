@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class RolesInfo
 {
-    public List<RolesInfoConfigData> data;
+    public Dictionary<int, RolesInfoConfigData> data;
 }
 
 [Serializable]

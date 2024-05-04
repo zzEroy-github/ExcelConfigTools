@@ -11,22 +11,21 @@ namespace ExcelConfigTest
     class ExcelConfigTool
     {
         //配置Excel表存放目录
-        static string excelDir = "F:\\CodeProjects\\CSharp\\ExcelConfigTest\\ExcelFiles";
+        static string excelDir = "..\\..\\ExcelFiles"; //执行路径以编译生成的.dll文件为根路径
 
         //导出的配置二进制文件目录
-        static string exportBinaryDir = "F:\\CodeProjects\\CSharp\\ExcelConfigTest\\ExportFiles\\binary";
+        static string exportBinaryDir = "..\\..\\ExportFiles\\binary";
 
         //导出的配置CShape类目录
-        static string exportCSDir = "F:\\CodeProjects\\CSharp\\ExcelConfigTest\\ExportFiles\\cs";
+        static string exportCSDir = "..\\..\\ExportFiles\\cs";
 
         //配置类的Template文件路径
-        static string templatePath = "F:\\CodeProjects\\CSharp\\ExcelConfigTest\\Template.txt";
+        static string templatePath = "..\\..\\Template.txt";
 
         static string templateText = "";
 
         public static void StartUp()
         {
-            //System.Text.Encoding.RegisterProvider(System.Text.CodePagesEncodingProvider.Instance);
             
             //读取template文本
             using(StreamReader sr = new StreamReader(templatePath))
@@ -42,47 +41,54 @@ namespace ExcelConfigTest
                 string[] fullExcelFileNameSplit = fullExcelFileName.Split('\\');  
                 string excelFileName = fullExcelFileNameSplit[fullExcelFileNameSplit.Length - 1]; //文件名，索引^1表示倒数第1（C# 8.0以下不支持）
 
-                FileStream stream = File.Open(fullExcelFileName, FileMode.Open, FileAccess.Read);
-                IExcelDataReader excelDataReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
-                Console.WriteLine("文件名称:" + fullExcelFileName + " 行数：" + excelDataReader.RowCount + "  列数：" + excelDataReader.FieldCount);
-                
-                // 忽略以#开头的excel文件
-                if (excelFileName.StartsWith("#"))
+                if (!excelFileName.StartsWith("~$"))  //如果excel表在打开状态，其副本前缀为~$，需要跳过这个副本文件
                 {
-                    Console.WriteLine($"{fullExcelFileName} 被跳过");
-                    continue;
-                }
+                    //复制一份excel表，防止excel表已打开导致占用报错
+                    string copyFullExcelFileName = fullExcelFileName + ".copy";
+                    File.Copy(fullExcelFileName, copyFullExcelFileName);
+                    FileStream stream = File.Open(copyFullExcelFileName, FileMode.Open, FileAccess.Read);
+                    IExcelDataReader excelDataReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+                    //Console.WriteLine("文件名称:" + fullExcelFileName + " 行数：" + excelDataReader.RowCount + "  列数：" + excelDataReader.FieldCount);
 
-                if (excelDataReader.RowCount <= 2)
-                {
-                    Console.WriteLine($"文件 {excelFileName} 内容不足3行，不进行导表操作！");
-                }
-                else
-                {
-                    List<string[]> excelData = new List<string[]>();   //存储excel表数据的List
-                    for (int j = 0; j < excelDataReader.RowCount; j++) //遍历表的所有行
+                    // 忽略以#开头的excel文件
+                    if (excelFileName.StartsWith("#"))
                     {
-                        excelDataReader.Read();
-                        string[] rowData = new string[excelDataReader.FieldCount]; //存储一行的数据
-                        for (int k = 0; k < excelDataReader.FieldCount; k++)       //遍历行的所有值
-                        {
-                            
-                            if (excelDataReader.GetValue(k) == null)
-                            {
-                                rowData[k] = "";
-                            }
-                            else
-                            {
-                                rowData[k] = excelDataReader.GetValue(k).ToString();
-                                Console.WriteLine("存储每一行数据 其中一个：" + excelDataReader.GetValue(k).ToString());
-                            }
-                        }
-                        excelData.Add(rowData);
+                        Console.WriteLine($"{fullExcelFileName} 被跳过");
+                        continue;
                     }
-                    CreateDynamicsType(excelData, excelFileName);
-                    excelData.Clear();
+
+                    if (excelDataReader.RowCount <= 2)
+                    {
+                        Console.WriteLine($"文件 {excelFileName} 内容不足3行，不进行导表操作！");
+                    }
+                    else
+                    {
+                        List<string[]> excelData = new List<string[]>();   //存储excel表数据的List
+                        for (int j = 0; j < excelDataReader.RowCount; j++) //遍历表的所有行
+                        {
+                            excelDataReader.Read();
+                            string[] rowData = new string[excelDataReader.FieldCount]; //存储一行的数据
+                            for (int k = 0; k < excelDataReader.FieldCount; k++)       //遍历行的所有值
+                            {
+
+                                if (excelDataReader.GetValue(k) == null)
+                                {
+                                    rowData[k] = "";
+                                }
+                                else
+                                {
+                                    rowData[k] = excelDataReader.GetValue(k).ToString();
+                                    //Console.WriteLine("存储每一行数据 其中一个：" + excelDataReader.GetValue(k).ToString());
+                                }
+                            }
+                            excelData.Add(rowData);
+                        }
+                        CreateDynamicsType(excelData, excelFileName);
+                        excelData.Clear();
+                    }
+                    stream.Close();
+                    File.Delete(copyFullExcelFileName);
                 }
-                stream.Close();
             }
         }
 
@@ -118,7 +124,7 @@ namespace ExcelConfigTest
                 else
                 {
                     dataClassBuilder.DefineField(field, fieldType, FieldAttributes.Public);
-                    Console.WriteLine($"表{fileName} 成功创建类型为{dataType}的字段{field}");
+                    //Console.WriteLine($"表{fileName} 成功创建类型为{dataType}的字段{field}");
                 }
 
                 replaceConfigDataStr = replaceConfigDataStr + string.Format($"    public {dataType.ToLower()} {field};\n");
@@ -128,35 +134,42 @@ namespace ExcelConfigTest
 
             //实例化数据类并写入数据
             List<object> dataList = new List<object>(); //存储数据的List
+            Dictionary<int, object> dataDict = new Dictionary<int, object>(); //存储数据的字典
 
             for (int i = 2; i < data.Count; i++)        //从第3行开始，遍历数据行
             {
+                int id = -1;
                 Object dataClassInst = Activator.CreateInstance(dataClass);
                 for (int j = 0; j < fieldNames.Length; j++) //遍历字段名
                 {
                     Type valueType = GetSystemDataType(data[0][j]);
-                    var value = Convert.ChangeType(data[i][j], valueType);
-                    Console.WriteLine($"写入动态类实例 行数：{i + 1}  字段名：{fieldNames[j]} 字段类型：{valueType}  数据：{value}  数据类型：{value.GetType()}");
+                    object value = Convert.ChangeType(data[i][j], valueType);
+                    if (fieldNames[j].ToLower() == "id")
+                    {
+                        id = (int)value;
+                    }
+                    //Console.WriteLine($"写入动态类实例 行数：{i + 1}  字段名：{fieldNames[j]} 字段类型：{valueType}  数据：{value}  数据类型：{value.GetType()}");
 
                     FieldInfo dataClassFieldInfo = dataClass.GetField(fieldNames[j]);
                     dataClassFieldInfo.SetValue(dataClassInst, value);
                 }
-                dataList.Add(dataClassInst);
+                dataDict.Add(id, dataClassInst);
+                
             }
 
 
-            // 创建主类，将dataList保存到主类中
+            // 创建主类，将dataDict保存到主类中
             TypeBuilder mainClassBuilder = moduleBuilder.DefineType(mainTypeName, TypeAttributes.Public | TypeAttributes.Serializable);
-            mainClassBuilder.DefineField(mainTypeFieldName, typeof(List<object>), FieldAttributes.Public);
+            mainClassBuilder.DefineField(mainTypeFieldName, typeof(Dictionary<int, object>), FieldAttributes.Public);
             Type mainType = mainClassBuilder.CreateType();
             Object instance = Activator.CreateInstance(mainType);
             FieldInfo fieldInfo = mainType.GetField(mainTypeFieldName);
-            fieldInfo.SetValue(instance, dataList);
-            Console.WriteLine($"写入实例dataList长度={dataList.Count}  查看值：{fieldInfo.Name}  查看其他：{fieldInfo.ToString()}");
+            fieldInfo.SetValue(instance, dataDict);
+            //Console.WriteLine($"写入实例dataList长度={dataDict.Count}  查看值：{fieldInfo.Name}  查看其他：{fieldInfo.ToString()}");
             
 
             ExportBinary(instance);
-            dataList.Clear();
+            dataDict.Clear();
 
             string[] ExportCShapeFileParam = new string[] { mainType.Name, replaceConfigDataStr };
             ExportCShapeFile(ExportCShapeFileParam);
