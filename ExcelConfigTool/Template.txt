@@ -1,0 +1,12 @@
+using System;
+using System.Collections.Generic;
+
+[Serializable]
+public class template_mainClass
+{
+    public List<template_mainClassConfigData> data;
+}
+
+[Serializable]
+public class template_mainClassConfigData
+{template_configDataText}
