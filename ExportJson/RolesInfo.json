@@ -1,0 +1,20 @@
+{
+  "1": {
+    "ID": 1,
+    "name": "露西亚",
+    "modelName": "深红之渊",
+    "optional": true,
+    "iconName": "select_alpha_dao",
+    "iconTransform": null,
+    "roleDescribe": "华丽的技能衔接令人应接不暇，超凡的爆发伤害往往能将敌人瞬间击溃"
+  },
+  "2": {
+    "ID": 2,
+    "name": "比安卡",
+    "modelName": "小小真理",
+    "optional": false,
+    "iconName": "select_zhenli_gong",
+    "iconTransform": "6,-5.7,0.82,0.82",
+    "roleDescribe": null
+  }
+}

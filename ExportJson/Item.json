@@ -1,0 +1,50 @@
+{
+  "1": {
+    "ID": 1,
+    "name": "螺母",
+    "star": 0,
+    "quality": 1,
+    "icon": null,
+    "descript": "空中花园最常见的货币，价值不高但却是不可或缺的。"
+  },
+  "2": {
+    "ID": 2,
+    "name": "黑卡",
+    "star": 0,
+    "quality": 5,
+    "icon": null,
+    "descript": "极其稀有且极具价值的货币，所有人都对它趋之若鹜。"
+  },
+  "3": {
+    "ID": 3,
+    "name": "意识3号",
+    "star": 3,
+    "quality": 1,
+    "icon": null,
+    "descript": null
+  },
+  "4": {
+    "ID": 4,
+    "name": "意识4号",
+    "star": 3,
+    "quality": 1,
+    "icon": null,
+    "descript": null
+  },
+  "5": {
+    "ID": 5,
+    "name": "意识5号",
+    "star": 3,
+    "quality": 1,
+    "icon": null,
+    "descript": null
+  },
+  "6": {
+    "ID": 6,
+    "name": "意识6号",
+    "star": 3,
+    "quality": 1,
+    "icon": null,
+    "descript": null
+  }
+}

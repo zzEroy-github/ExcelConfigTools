@@ -5,6 +5,7 @@ using ExcelDataReader;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Runtime.Serialization.Formatters.Binary;
+using Newtonsoft.Json;
 
 namespace ExcelConfigTest
 {
@@ -21,6 +22,9 @@ namespace ExcelConfigTest
 
         //配置类的Template文件路径
         static string templatePath = "..\\..\\Template.txt";
+
+        //导出的明文json文件目录
+        static string exportJsonDir = "..\\..\\ExportJson";
 
         static string templateText = "";
 
@@ -45,7 +49,11 @@ namespace ExcelConfigTest
                 {
                     //复制一份excel表，防止excel表已打开导致占用报错
                     string copyFullExcelFileName = fullExcelFileName + ".copy";
-                    File.Copy(fullExcelFileName, copyFullExcelFileName);
+                    if (!File.Exists(copyFullExcelFileName))  //程序报错中断会导致copy副本未删除，所以加这个判断
+                    {
+                        File.Copy(fullExcelFileName, copyFullExcelFileName);
+                    }
+                    
                     FileStream stream = File.Open(copyFullExcelFileName, FileMode.Open, FileAccess.Read);
                     IExcelDataReader excelDataReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
                     //Console.WriteLine("文件名称:" + fullExcelFileName + " 行数：" + excelDataReader.RowCount + "  列数：" + excelDataReader.FieldCount);
@@ -73,12 +81,12 @@ namespace ExcelConfigTest
 
                                 if (excelDataReader.GetValue(k) == null)
                                 {
-                                    rowData[k] = "";
+                                    rowData[k] = null;
                                 }
                                 else
                                 {
                                     rowData[k] = excelDataReader.GetValue(k).ToString();
-                                    //Console.WriteLine("存储每一行数据 其中一个：" + excelDataReader.GetValue(k).ToString());
+                                    Console.WriteLine("存储每一行数据 其中一个：" + excelDataReader.GetValue(k).ToString());
                                 }
                             }
                             excelData.Add(rowData);
@@ -140,19 +148,32 @@ namespace ExcelConfigTest
             {
                 int id = -1;
                 Object dataClassInst = Activator.CreateInstance(dataClass);
+
                 for (int j = 0; j < fieldNames.Length; j++) //遍历字段名
                 {
                     Type valueType = GetSystemDataType(data[0][j]);
-                    object value = Convert.ChangeType(data[i][j], valueType);
+                    object value = null;
+
+                    if (data[i][j] == null)
+                    {
+                        value = null;
+                        Console.WriteLine($"写入动态类实例 行数：{i + 1}  字段名：{fieldNames[j]} 字段类型：{valueType}  数据：{value}  数据类型：null");
+                    }
+                    else
+                    {
+                        value = Convert.ChangeType(data[i][j], valueType);
+                        Console.WriteLine($"写入动态类实例 行数：{i + 1}  字段名：{fieldNames[j]} 字段类型：{valueType}  数据：{value}  数据类型：{value.GetType()}");
+                    }
+
                     if (fieldNames[j].ToLower() == "id")
                     {
                         id = (int)value;
                     }
-                    //Console.WriteLine($"写入动态类实例 行数：{i + 1}  字段名：{fieldNames[j]} 字段类型：{valueType}  数据：{value}  数据类型：{value.GetType()}");
 
                     FieldInfo dataClassFieldInfo = dataClass.GetField(fieldNames[j]);
                     dataClassFieldInfo.SetValue(dataClassInst, value);
                 }
+
                 dataDict.Add(id, dataClassInst);
                 
             }
@@ -167,12 +188,13 @@ namespace ExcelConfigTest
             fieldInfo.SetValue(instance, dataDict);
             //Console.WriteLine($"写入实例dataList长度={dataDict.Count}  查看值：{fieldInfo.Name}  查看其他：{fieldInfo.ToString()}");
             
-
             ExportBinary(instance);
-            dataDict.Clear();
+            ExportCShapeFile(mainType.Name, replaceConfigDataStr);
 
-            string[] ExportCShapeFileParam = new string[] { mainType.Name, replaceConfigDataStr };
-            ExportCShapeFile(ExportCShapeFileParam);
+            string jsonStr = JsonConvert.SerializeObject(dataDict, Formatting.Indented);
+            ExportJsonFile(mainType.Name, jsonStr);
+
+            dataDict.Clear();
         }
 
         //获取系统数据类型的类
@@ -213,13 +235,9 @@ namespace ExcelConfigTest
             stream.Close();
         }
 
-        //导出CS类文件
-        public static void ExportCShapeFile(string[] text)
+        //导出CS类文件  mainClsName：主类名  configDataText：数据类内容
+        public static void ExportCShapeFile(string mainClsName, string configDataText)
         {
-            //text  --[0] 主类名  --[1]数据类内容
-            string mainClsName = text[0];
-            string configDataText = text[1];
-
             string replace_1 = templateText.Replace("template_mainClass", mainClsName); //Replace方法不会改变原字符串
             string replace_2 = replace_1.Replace("template_configDataText", configDataText);
 
@@ -228,6 +246,17 @@ namespace ExcelConfigTest
             {
                 sw.Write(replace_2);
                 Console.WriteLine($"成功导出配置类文件:{mainClsName + ".cs"}");
+            }
+        }
+
+        //导出json明文文件
+        public static void ExportJsonFile(string mainClsName, string jsonStr)
+        {
+            string exportJsonFile = Path.Combine(exportJsonDir, mainClsName + ".json");
+            using(StreamWriter sw = new StreamWriter(exportJsonFile))
+            {
+                sw.Write(jsonStr);
+                Console.WriteLine($"成功导出Json文件:{mainClsName + ".json"}");
             }
         }
     }

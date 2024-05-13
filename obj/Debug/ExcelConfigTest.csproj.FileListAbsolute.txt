@@ -20,3 +20,5 @@ F:\CodeProjects\CSharp\ExcelConfigTool\obj\Debug\ExcelConfigTest.csproj.CoreComp
 F:\CodeProjects\CSharp\ExcelConfigTool\obj\Debug\ExcelConfigTest.csproj.CopyComplete
 F:\CodeProjects\CSharp\ExcelConfigTool\obj\Debug\ExcelConfigTest.exe
 F:\CodeProjects\CSharp\ExcelConfigTool\obj\Debug\ExcelConfigTest.pdb
+F:\CodeProjects\CSharp\ExcelConfigTool\bin\Debug\Newtonsoft.Json.dll
+F:\CodeProjects\CSharp\ExcelConfigTool\bin\Debug\Newtonsoft.Json.xml

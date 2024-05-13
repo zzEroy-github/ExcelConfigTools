@@ -1,0 +1,16 @@
+{
+  "1": {
+    "ID": 1,
+    "name": "露西亚",
+    "modelName": "深红之渊",
+    "optional": true,
+    "iconName": null
+  },
+  "2": {
+    "ID": 2,
+    "name": "比安卡",
+    "modelName": "真理",
+    "optional": false,
+    "iconName": null
+  }
+}
