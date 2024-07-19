@@ -86,7 +86,7 @@ namespace ExcelConfigTest
                                 else
                                 {
                                     rowData[k] = excelDataReader.GetValue(k).ToString();
-                                    Console.WriteLine("存储每一行数据 其中一个：" + excelDataReader.GetValue(k).ToString());
+                                    //Console.WriteLine("存储每一行数据 其中一个：" + excelDataReader.GetValue(k).ToString());
                                 }
                             }
                             excelData.Add(rowData);
@@ -125,16 +125,21 @@ namespace ExcelConfigTest
                 string field = fieldNames[i];    //字段名
                 
                 Type fieldType = GetSystemDataType(dataType);
+                
                 if (fieldType == null)
                 {
                     Console.WriteLine($"错误：表 {fieldNames} 中第{i + 1}个字段的类型 {dataType} 不受支持，无法导出！");
                 }
                 else
                 {
+                    
                     dataClassBuilder.DefineField(field, fieldType, FieldAttributes.Public);
-                    //Console.WriteLine($"表{fileName} 成功创建类型为{dataType}的字段{field}");
                 }
 
+                if (dataType == "json")
+                {
+                    dataType = "string";
+                }
                 replaceConfigDataStr = replaceConfigDataStr + string.Format($"    public {dataType.ToLower()} {field};\n");
             }
             Type dataClass = dataClassBuilder.CreateType();
@@ -157,12 +162,17 @@ namespace ExcelConfigTest
                     if (data[i][j] == null)
                     {
                         value = null;
-                        Console.WriteLine($"写入动态类实例 行数：{i + 1}  字段名：{fieldNames[j]} 字段类型：{valueType}  数据：{value}  数据类型：null");
                     }
                     else
                     {
                         value = Convert.ChangeType(data[i][j], valueType);
-                        Console.WriteLine($"写入动态类实例 行数：{i + 1}  字段名：{fieldNames[j]} 字段类型：{valueType}  数据：{value}  数据类型：{value.GetType()}");
+
+                        if (data[0][j].ToLower() == "json")
+                        {
+                            //将json格式中多余的空格，换行去除
+                            value = JsonConvert.SerializeObject(JsonConvert.DeserializeObject((string)value));
+                        }
+                        //Console.WriteLine($"写入动态类实例 行数：{i + 1}  字段名：{fieldNames[j]} 字段类型：{valueType}  数据：{value}  数据类型：{value.GetType()}");
                     }
 
                     if (fieldNames[j].ToLower() == "id")
@@ -190,7 +200,7 @@ namespace ExcelConfigTest
             
             ExportBinary(instance);
             ExportCShapeFile(mainType.Name, replaceConfigDataStr);
-
+            
             string jsonStr = JsonConvert.SerializeObject(dataDict, Formatting.Indented);
             ExportJsonFile(mainType.Name, jsonStr);
 
@@ -214,6 +224,10 @@ namespace ExcelConfigTest
 
                 case "bool":
                     type = Type.GetType("System.Boolean");
+                    break;
+
+                case "json":
+                    type = Type.GetType("System.String");
                     break;
 
                 default:

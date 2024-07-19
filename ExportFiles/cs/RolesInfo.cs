@@ -12,6 +12,7 @@ public class RolesInfoConfigData
 {
     public int ID;
     public string name;
+    public string name_en;
     public string modelName;
     public bool optional;
     public string iconName;

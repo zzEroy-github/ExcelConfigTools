@@ -15,4 +15,7 @@ public class DungeonInfoConfigData
     public int level;
     public string story;
     public string reward;
+    public int posX;
+    public int prefabId;
+    public string playerInitXY;
 }
