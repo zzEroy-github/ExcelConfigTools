@@ -17,6 +17,6 @@ public class RolesSkillConfigData
     public string name;
     public string detailData;
     public int nextSkillId;
-    public string effectName;
+    public string effectList;
     public string audioName;
 }

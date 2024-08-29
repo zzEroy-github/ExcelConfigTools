@@ -11,6 +11,9 @@ namespace ExcelConfigTest
 {
     class ExcelConfigTool
     {
+        //debug模式开关
+        static bool debugModel = false;
+
         //配置Excel表存放目录
         static string excelDir = "..\\..\\ExcelFiles"; //执行路径以编译生成的.dll文件为根路径
 
@@ -56,6 +59,7 @@ namespace ExcelConfigTest
                     
                     FileStream stream = File.Open(copyFullExcelFileName, FileMode.Open, FileAccess.Read);
                     IExcelDataReader excelDataReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
+
                     //Console.WriteLine("文件名称:" + fullExcelFileName + " 行数：" + excelDataReader.RowCount + "  列数：" + excelDataReader.FieldCount);
 
                     // 忽略以#开头的excel文件
@@ -91,11 +95,14 @@ namespace ExcelConfigTest
                             }
                             excelData.Add(rowData);
                         }
+
+                        //删除copy副本的最佳时机
+                        stream.Close();
+                        File.Delete(copyFullExcelFileName);
+
                         CreateDynamicsType(excelData, excelFileName);
                         excelData.Clear();
                     }
-                    stream.Close();
-                    File.Delete(copyFullExcelFileName);
                 }
             }
         }
@@ -152,16 +159,29 @@ namespace ExcelConfigTest
             for (int i = 2; i < data.Count; i++)        //从第3行开始，遍历数据行
             {
                 int id = -1;
+                bool validRow = true;
+
                 Object dataClassInst = Activator.CreateInstance(dataClass);
 
-                for (int j = 0; j < fieldNames.Length; j++) //遍历字段名
+                for (int j = 0; j < fieldNames.Length; j++) //遍历每一列
                 {
+                    DebugL($"表{mainTypeName} 中的第 {i+1} 行   第 {j+1} 列处理中...");
+
                     Type valueType = GetSystemDataType(data[0][j]);
                     object value = null;
 
+                    //遍历每个值（从第3行开始）
                     if (data[i][j] == null)
                     {
+                        DebugL($"表{mainTypeName} 中的第 {i + 1} 行   第 {j + 1} 列是空！");
                         value = null;
+
+                        if (fieldNames[j].ToLower() == "id")
+                        {
+                            //id为空则遗弃该行
+                            validRow = false;
+                            break;
+                        }
                     }
                     else
                     {
@@ -178,13 +198,18 @@ namespace ExcelConfigTest
                     if (fieldNames[j].ToLower() == "id")
                     {
                         id = (int)value;
+                        DebugL($"表{mainTypeName} 中的第 {i + 1} 行   第 {j + 1} 列 id={id}");
                     }
 
                     FieldInfo dataClassFieldInfo = dataClass.GetField(fieldNames[j]);
                     dataClassFieldInfo.SetValue(dataClassInst, value);
+                    DebugL($"表{mainTypeName} 中的第 {i+1} 行   第 {j+1} 列处理成功！");
                 }
 
-                dataDict.Add(id, dataClassInst);
+                if (validRow)
+                {
+                    dataDict.Add(id, dataClassInst);
+                }
                 
             }
 
@@ -241,12 +266,12 @@ namespace ExcelConfigTest
         {
             string typeName = dataObj.GetType().Name;
             string fileName = typeName + ".dat";
-            Console.WriteLine("导出二进制文件 文件名：" + fileName);
 
             FileStream stream = new FileStream(Path.Combine(exportBinaryDir, fileName), FileMode.Create);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             binaryFormatter.Serialize(stream, dataObj);
             stream.Close();
+            Console.WriteLine("成功导出二进制文件 文件名：" + fileName);
         }
 
         //导出CS类文件  mainClsName：主类名  configDataText：数据类内容
@@ -259,7 +284,7 @@ namespace ExcelConfigTest
             using(StreamWriter sw = new StreamWriter(exportCSfile))
             {
                 sw.Write(replace_2);
-                Console.WriteLine($"成功导出配置类文件:{mainClsName + ".cs"}");
+                //Console.WriteLine($"成功导出配置类文件:{mainClsName + ".cs"}");
             }
         }
 
@@ -270,7 +295,16 @@ namespace ExcelConfigTest
             using(StreamWriter sw = new StreamWriter(exportJsonFile))
             {
                 sw.Write(jsonStr);
-                Console.WriteLine($"成功导出Json文件:{mainClsName + ".json"}");
+                //Console.WriteLine($"成功导出Json文件:{mainClsName + ".json"}");
+            }
+        }
+
+        //以debugModel控制的Log输出方法
+        public static void DebugL(string str)
+        {
+            if (debugModel)
+            {
+                Console.WriteLine(str);
             }
         }
     }

@@ -4,10 +4,10 @@
     "roleId": 1,
     "type": 1,
     "notes": "深红普攻1式",
-    "name": "normalAttack_1",
-    "detailData": "{\"1\":{\"stageType\":1,\"frameSum\":9,\"moveDirection\":null},\"2\":{\"stageType\":2,\"frameSum\":5,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0.5:0\"},\"3\":{\"stageType\":3,\"frameSum\":5,\"moveDirection\":\"0.5:0\"}}",
+    "name": "NormalAttack_1",
+    "detailData": "{\"1\":{\"stageType\":1,\"frame\":12,\"skillMoveSpeed\":null},\"2\":{\"stageType\":2,\"frame\":21,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":0,\"shockScreenTiming\":1,\"skillMoveSpeed\":\"1:0\",\"effectPrefab\":null},\"3\":{\"stageType\":3,\"frame\":24,\"skillMoveSpeed\":\"1:0\"},\"4\":{\"stageType\":4,\"frame\":37,\"skillMoveSpeed\":null}}",
     "nextSkillId": 2,
-    "effectName": "Alpha_Slash",
+    "effectList": "{\"4\":{\"stageType\":4,\"frame\":37,\"skillMoveSpeed\":null}}",
     "audioName": "normalAttack_1"
   },
   "2": {
@@ -15,10 +15,10 @@
     "roleId": 1,
     "type": 1,
     "notes": "深红普攻2式",
-    "name": "normalAttack_2",
-    "detailData": "{\"1\":{\"stageType\":1,\"frameSum\":9,\"moveDirection\":null},\"2\":{\"stageType\":2,\"frameSum\":6,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0.4:0\"},\"3\":{\"stageType\":3,\"frameSum\":5,\"moveDirection\":\"0.4:0\"}}",
+    "name": "NormalAttack_2",
+    "detailData": "{\"1\":{\"stageType\":1,\"frame\":12,\"skillMoveSpeed\":null},\"2\":{\"stageType\":2,\"frame\":22,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":0,\"shockScreenTiming\":1,\"skillMoveSpeed\":\"1:0\",\"effectPrefab\":null},\"3\":{\"stageType\":3,\"frame\":25,\"skillMoveSpeed\":\"1:0\"},\"4\":{\"stageType\":4,\"frame\":38,\"skillMoveSpeed\":null}}",
     "nextSkillId": 3,
-    "effectName": "Alpha_Slash",
+    "effectList": "{\"1\":{\"prefabName\":\"alpha_NormalAttackSlash\",\"animationName\":\"NormalAttack_2\",\"delayDisappearTime\":0,\"type\":1}}",
     "audioName": "normalAttack_1"
   },
   "3": {
@@ -26,87 +26,21 @@
     "roleId": 1,
     "type": 1,
     "notes": "深红普攻3式",
-    "name": "normalAttack_3",
-    "detailData": "{\"1\":{\"stageType\":1,\"frameSum\":9,\"moveDirection\":null},\"2\":{\"stageType\":2,\"frameSum\":6,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0.4:0\"},\"3\":{\"stageType\":3,\"frameSum\":4,\"moveDirection\":\"0.4:0\"}}",
-    "nextSkillId": 4,
-    "effectName": "Alpha_Slash",
+    "name": "NormalAttack_3",
+    "detailData": "{\"1\":{\"stageType\":1,\"frame\":12,\"skillMoveSpeed\":null},\"2\":{\"stageType\":2,\"frame\":22,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":0,\"shockScreenTiming\":1,\"skillMoveSpeed\":\"1:0\",\"effectPrefab\":null},\"3\":{\"stageType\":3,\"frame\":25,\"skillMoveSpeed\":\"1:0\"},\"4\":{\"stageType\":4,\"frame\":38,\"skillMoveSpeed\":null}}",
+    "nextSkillId": 1,
+    "effectList": "{\"1\":{\"prefabName\":\"alpha_NormalAttackSlash\",\"animationName\":\"NormalAttack_3\",\"delayDisappearTime\":0,\"type\":1}}",
     "audioName": "normalAttack_3"
   },
-  "4": {
-    "ID": 4,
+  "13": {
+    "ID": 13,
     "roleId": 1,
-    "type": 1,
-    "notes": "深红普攻4式",
-    "name": "normalAttack_4",
-    "detailData": "{\"1\":{\"stageType\":2,\"frameSum\":9,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0.2:0\"},\"2\":{\"stageType\":3,\"frameSum\":3,\"moveDirection\":\"0.2:0\"}}",
-    "nextSkillId": 5,
-    "effectName": "Alpha_Slash",
-    "audioName": "normalAttack_6"
-  },
-  "5": {
-    "ID": 5,
-    "roleId": 1,
-    "type": 1,
-    "notes": "深红普攻5式",
-    "name": "normalAttack_5",
-    "detailData": "{\"1\":{\"stageType\":1,\"frameSum\":8,\"moveDirection\":null},\"2\":{\"stageType\":2,\"frameSum\":4,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":2,\"shockScreenTiming\":1,\"moveDirection\":\"0.3:0\"},\"3\":{\"stageType\":3,\"frameSum\":6,\"moveDirection\":\"0.3:0\"}}",
-    "nextSkillId": 6,
-    "effectName": "Alpha_Penetrate",
-    "audioName": "normalAttack_5"
-  },
-  "6": {
-    "ID": 6,
-    "roleId": 1,
-    "type": 1,
-    "notes": "深红普攻6式",
-    "name": "normalAttack_6",
-    "detailData": "{\"1\":{\"stageType\":1,\"frameSum\":12,\"moveDirection\":null},\"2\":{\"stageType\":2,\"frameSum\":9,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":2,\"shockScreenTiming\":1,\"moveDirection\":\"0.4:0\"},\"3\":{\"stageType\":3,\"frameSum\":3,\"moveDirection\":\"0.4:0\"}}",
-    "nextSkillId": 7,
-    "effectName": "Alpha_Slash",
-    "audioName": "normalAttack_6"
-  },
-  "7": {
-    "ID": 7,
-    "roleId": 1,
-    "type": 1,
-    "notes": "深红普攻7式",
-    "name": "normalAttack_7",
-    "detailData": "{\"1\":{\"stageType\":1,\"frameSum\":4,\"moveDirection\":null},\"2\":{\"stageType\":2,\"frameSum\":6,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0.4:0\"},\"3\":{\"stageType\":3,\"frameSum\":2,\"moveDirection\":\"0.4:0\"},\"4\":{\"stageType\":2,\"frameSum\":5,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0.4:0\"},\"5\":{\"stageType\":3,\"frameSum\":8,\"moveDirection\":\"0.4:0\"}}",
-    "nextSkillId": 8,
-    "effectName": "Alpha_SlashDouble",
-    "audioName": "normalAttack_7"
-  },
-  "8": {
-    "ID": 8,
-    "roleId": 1,
-    "type": 1,
-    "notes": "深红普攻7式重复1次",
-    "name": "normalAttack_7_repeat",
-    "detailData": "{\"1\":{\"stageType\":1,\"frameSum\":2,\"moveDirection\":null},\"2\":{\"stageType\":2,\"frameSum\":6,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0.4:0\"},\"3\":{\"stageType\":3,\"frameSum\":2,\"moveDirection\":\"0.4:0\"},\"4\":{\"stageType\":2,\"frameSum\":5,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0.4:0\"},\"5\":{\"stageType\":3,\"frameSum\":8,\"moveDirection\":\"0.4:0\"}}",
-    "nextSkillId": 9,
-    "effectName": "Alpha_SlashDouble",
-    "audioName": "normalAttack_7"
-  },
-  "9": {
-    "ID": 9,
-    "roleId": 1,
-    "type": 1,
-    "notes": "深红普攻8式",
-    "name": "normalAttack_8",
-    "detailData": "{\"1\":{\"stageType\":1,\"frameSum\":14,\"moveDirection\":null},\"2\":{\"stageType\":2,\"frameSum\":5,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0.8:0\"},\"3\":{\"stageType\":2,\"frameSum\":5,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0.8:0\"},\"4\":{\"stageType\":2,\"frameSum\":4,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0.8:0\"},\"5\":{\"stageType\":3,\"frameSum\":4,\"moveDirection\":null}}",
-    "nextSkillId": 10,
-    "effectName": "Alpha_Slash",
-    "audioName": "normalAttack_8"
-  },
-  "10": {
-    "ID": 10,
-    "roleId": 1,
-    "type": 1,
-    "notes": "深红普攻9式",
-    "name": "normalAttack_9",
-    "detailData": "{\"1\":{\"stageType\":1,\"frameSum\":9,\"moveDirection\":null},\"2\":{\"stageType\":2,\"frameSum\":9,\"attackType\":1,\"attackValue\":2.5,\"shockScreen\":1,\"shockScreenTiming\":1,\"moveDirection\":\"0:0\"},\"3\":{\"stageType\":3,\"frameSum\":11,\"moveDirection\":null}}",
+    "type": 5,
+    "notes": "核心剑气1式，左上到右下",
+    "name": "CoreAttack_1",
+    "detailData": "{\"1\":{\"stageType\":1,\"frame\":12,\"skillMoveSpeed\":null},\"2\":{\"stageType\":2,\"frame\":22,\"attackType\":2,\"attackValue\":2.5,\"shockScreen\":0,\"shockScreenTiming\":1,\"skillMoveSpeed\":\"1:0\",\"effectPrefab\":\"hexinjianqi\"},\"3\":{\"stageType\":3,\"frame\":25,\"skillMoveSpeed\":\"1:0\"},\"4\":{\"stageType\":4,\"frame\":38,\"skillMoveSpeed\":null}}",
     "nextSkillId": 1,
-    "effectName": "Alpha_SlashCircle",
-    "audioName": "normalAttack_9"
+    "effectList": "{\"1\":{\"prefabName\":\"alpha_NormalAttackSlash\",\"animationName\":\"NormalAttack_3\",\"delayDisappearTime\":0,\"type\":1},\"2\":{\"prefabName\":\"alpha_hexinjianqi\",\"animationName\":\"1\",\"delayDisappearTime\":0,\"type\":2}}",
+    "audioName": "normalAttack_3"
   }
 }
