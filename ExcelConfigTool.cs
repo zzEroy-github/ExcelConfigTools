@@ -13,6 +13,7 @@ namespace ExcelConfigTest
     {
         //debug模式开关
         static bool debugModel = false;
+        //static bool debugModel = true;
 
         //配置Excel表存放目录
         static string excelDir = "..\\..\\ExcelFiles"; //执行路径以编译生成的.dll文件为根路径
@@ -60,7 +61,7 @@ namespace ExcelConfigTest
                     FileStream stream = File.Open(copyFullExcelFileName, FileMode.Open, FileAccess.Read);
                     IExcelDataReader excelDataReader = ExcelReaderFactory.CreateOpenXmlReader(stream);
 
-                    //Console.WriteLine("文件名称:" + fullExcelFileName + " 行数：" + excelDataReader.RowCount + "  列数：" + excelDataReader.FieldCount);
+                    DebugL("文件名称:" + fullExcelFileName + " 行数：" + excelDataReader.RowCount + "  列数：" + excelDataReader.FieldCount);
 
                     // 忽略以#开头的excel文件
                     if (excelFileName.StartsWith("#"))
@@ -75,6 +76,7 @@ namespace ExcelConfigTest
                     }
                     else
                     {
+                        int fieldCount = 0; //列数量，它决定于第一行的列数量
                         List<string[]> excelData = new List<string[]>();   //存储excel表数据的List
                         for (int j = 0; j < excelDataReader.RowCount; j++) //遍历表的所有行
                         {
@@ -82,7 +84,36 @@ namespace ExcelConfigTest
                             string[] rowData = new string[excelDataReader.FieldCount]; //存储一行的数据
                             for (int k = 0; k < excelDataReader.FieldCount; k++)       //遍历行的所有值
                             {
+                                if (j == 0)
+                                {
+                                    if (excelDataReader.GetValue(k) != null)
+                                    {
+                                        rowData[k] = excelDataReader.GetValue(k).ToString();
+                                        fieldCount++;
+                                    }
+                                    else
+                                    {
+                                        DebugL($"表 {excelFileName} 采集第一行数据类型时遇到空值跳出，空值出现在第{fieldCount + 1}列");
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    if (k < fieldCount) //只采集第1列数量的数据
+                                    {
+                                        if (excelDataReader.GetValue(k) == null)
+                                        {
+                                            rowData[k] = null;
+                                        }
+                                        else
+                                        {
+                                            rowData[k] = excelDataReader.GetValue(k).ToString();
+                                            DebugL("存储每一行数据 其中一个：" + excelDataReader.GetValue(k).ToString());
+                                        }
+                                    }
+                                }
 
+                                /*
                                 if (excelDataReader.GetValue(k) == null)
                                 {
                                     rowData[k] = null;
@@ -90,8 +121,9 @@ namespace ExcelConfigTest
                                 else
                                 {
                                     rowData[k] = excelDataReader.GetValue(k).ToString();
-                                    //Console.WriteLine("存储每一行数据 其中一个：" + excelDataReader.GetValue(k).ToString());
+                                    DebugL("存储每一行数据 其中一个：" + excelDataReader.GetValue(k).ToString());
                                 }
+                                */
                             }
                             excelData.Add(rowData);
                         }
@@ -136,6 +168,7 @@ namespace ExcelConfigTest
                 if (fieldType == null)
                 {
                     Console.WriteLine($"错误：表 {fieldNames} 中第{i + 1}个字段的类型 {dataType} 不受支持，无法导出！");
+                    continue;
                 }
                 else
                 {
@@ -176,7 +209,7 @@ namespace ExcelConfigTest
                         DebugL($"表{mainTypeName} 中的第 {i + 1} 行   第 {j + 1} 列是空！");
                         value = null;
 
-                        if (fieldNames[j].ToLower() == "id")
+                        if (string.IsNullOrEmpty(fieldNames[j]) || fieldNames[j].ToLower() == "id")
                         {
                             //id为空则遗弃该行
                             validRow = false;
@@ -192,7 +225,7 @@ namespace ExcelConfigTest
                             //将json格式中多余的空格，换行去除
                             value = JsonConvert.SerializeObject(JsonConvert.DeserializeObject((string)value));
                         }
-                        //Console.WriteLine($"写入动态类实例 行数：{i + 1}  字段名：{fieldNames[j]} 字段类型：{valueType}  数据：{value}  数据类型：{value.GetType()}");
+                        DebugL($"写入动态类实例 行数：{i + 1}  字段名：{fieldNames[j]} 字段类型：{valueType}  数据：{value}  数据类型：{value.GetType()}");
                     }
 
                     if (fieldNames[j].ToLower() == "id")
@@ -221,8 +254,8 @@ namespace ExcelConfigTest
             Object instance = Activator.CreateInstance(mainType);
             FieldInfo fieldInfo = mainType.GetField(mainTypeFieldName);
             fieldInfo.SetValue(instance, dataDict);
-            //Console.WriteLine($"写入实例dataList长度={dataDict.Count}  查看值：{fieldInfo.Name}  查看其他：{fieldInfo.ToString()}");
-            
+            DebugL($"写入实例dataList长度={dataDict.Count}  查看值：{fieldInfo.Name}  查看其他：{fieldInfo.ToString()}");
+
             ExportBinary(instance);
             ExportCShapeFile(mainType.Name, replaceConfigDataStr);
             
@@ -235,12 +268,22 @@ namespace ExcelConfigTest
         //获取系统数据类型的类
         public static Type GetSystemDataType(string typeName)
         {
+            DebugL($"获取系统数据类型的类 typeName={typeName}");
+            if (string.IsNullOrEmpty(typeName))
+            {
+                return null;
+            }
+
             typeName = typeName.ToLower();
             Type type = null;
             switch (typeName)
             {
                 case "int":
                     type = Type.GetType("System.Int32");
+                    break;
+
+                case "float":
+                    type = Type.GetType("System.Single");
                     break;
 
                 case "string":
@@ -256,6 +299,7 @@ namespace ExcelConfigTest
                     break;
 
                 default:
+                    type = null;
                     break;
             }
             return type;

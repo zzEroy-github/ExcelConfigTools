@@ -1,0 +1,17 @@
+{
+  "1": {
+    "ID": 1,
+    "name": "阿尔法蓝球buff",
+    "belongId": 1,
+    "type": 1,
+    "attackValue": 1E-05,
+    "healthValue": 0.0,
+    "defenseValue": 0.0,
+    "speedValue": 1E-05,
+    "critValue": 0.0,
+    "stayTime": 10.0,
+    "buffIcon": "skillballui_alpha_blue",
+    "buffEffectName": "alpha_blueBall",
+    "mainColor": "495CFF"
+  }
+}

@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-public class Item
+public class Ideogoly
 {
-    public Dictionary<int, ItemConfigData> data;
+    public Dictionary<int, IdeogolyConfigData> data;
 }
 
 [Serializable]
-public class ItemConfigData
+public class IdeogolyConfigData
 {
     public int ID;
     public string name;
@@ -17,6 +17,9 @@ public class ItemConfigData
     public string descript;
     public int ideologyPos;
     public int ideologyClassId;
+    public int attackValue;
+    public int healthValue;
+    public int defenseValue;
     public string ideologyEffect_Two;
     public string ideologyEffect_Two_Data;
     public string ideologyEffect_Four;

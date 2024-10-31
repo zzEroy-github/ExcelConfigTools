@@ -1,0 +1,38 @@
+{
+  "101": {
+    "ID": 101,
+    "name": "修理机工",
+    "name_en": "xiulijigong",
+    "type": "trashFish",
+    "level": 1,
+    "hp": 9999000,
+    "attackValue": 100,
+    "defenseValue": 5000,
+    "speedValue": 50,
+    "aiComponent": "{\"follow\":{\"intervalTime\":1,\"stepByStartDistance\":2.5,\"stepByMinDistance\":0.7,\"stepByMaxDistance\":4},\"baseAttack\":{\"attackDistance\":4,\"probability\":0.3,\"intervalTime\":1}}"
+  },
+  "102": {
+    "ID": 102,
+    "name": "修理机工（木桩型）",
+    "name_en": "xiulijigong",
+    "type": "trashFish",
+    "level": 1,
+    "hp": 9999000,
+    "attackValue": 100,
+    "defenseValue": 5000,
+    "speedValue": 50,
+    "aiComponent": null
+  },
+  "103": {
+    "ID": 103,
+    "name": "修理机工（极限型）",
+    "name_en": "xiulijigong",
+    "type": "elite",
+    "level": 99,
+    "hp": 9999000,
+    "attackValue": 600,
+    "defenseValue": 5000,
+    "speedValue": 200,
+    "aiComponent": "{\"follow\":{\"intervalTime\":2,\"stepByStartDistance\":2.5,\"stepByMinDistance\":1.5,\"stepByMaxDistance\":4},\"baseAttack\":{\"attackDistance\":4,\"probability\":0.3,\"intervalTime\":1},\"affactedShockWave\":{\"freezeTime\":3},\"blackHole\":{\"minIntervalTime\":10,\"maxIntervalTime\":20},\"flashBackStab\":{\"minIntervalTime\":8,\"maxIntervalTime\":15},\"getUpShockWave\":{},\"allAttack\":{}}"
+  }
+}

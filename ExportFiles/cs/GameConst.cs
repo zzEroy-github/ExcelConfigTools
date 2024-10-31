@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-public class Const
+public class GameConst
 {
-    public Dictionary<int, ConstConfigData> data;
+    public Dictionary<int, GameConstConfigData> data;
 }
 
 [Serializable]
-public class ConstConfigData
+public class GameConstConfigData
 {
     public int ID;
     public string name;

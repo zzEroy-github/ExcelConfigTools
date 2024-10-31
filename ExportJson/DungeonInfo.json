@@ -5,9 +5,10 @@
     "level": 1,
     "story": "哈桑派遣构造体部队搜寻黑卡时遭遇的第一场战斗，敌人透露出非比寻常的气息，恐怕是一场非常艰难的战斗。",
     "reward": "1,2,3",
-    "posX": 0,
-    "prefabId": 1,
-    "playerInitXY": "0:-1.955"
+    "prefabId": 3,
+    "playerInitXY": "-11:-1.955",
+    "monsterData": "{\"1\":{\"monsetId\":101,\"posX\":4,\"posY\":-1.95,\"initFaceRight\":false}}",
+    "audio": "Dungeon_1"
   },
   "2": {
     "ID": 2,
@@ -15,9 +16,10 @@
     "level": 3,
     "story": "深入敌营，这次敌人增加了许多，当然杀敌奖励也会增加！",
     "reward": "3,4,5",
-    "posX": 0,
-    "prefabId": 1,
-    "playerInitXY": "0:-1.955"
+    "prefabId": 3,
+    "playerInitXY": "0:-1.955",
+    "monsterData": "{\"1\":{\"monsetId\":101,\"posX\":4,\"posY\":-1.95,\"initFaceRight\":false}}",
+    "audio": "Dungeon_1"
   },
   "3": {
     "ID": 3,
@@ -25,8 +27,9 @@
     "level": 5,
     "story": "这家伙在BOSS的位置但完全没有BOSS的战斗力呀，毕竟是黄金时代的机械了。",
     "reward": "3,4,5",
-    "posX": 0,
-    "prefabId": 1,
-    "playerInitXY": "0:-1.955"
+    "prefabId": 3,
+    "playerInitXY": "0:-1.955",
+    "monsterData": null,
+    "audio": null
   }
 }

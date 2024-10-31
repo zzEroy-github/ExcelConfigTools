@@ -1,0 +1,19 @@
+{
+  "1": {
+    "ID": 1,
+    "name": "红嘤",
+    "star": 6,
+    "type": "太刀",
+    "icon": "katana_red_sakura",
+    "item_illustration_pos": "0:0:132.4:120.8",
+    "info_illustration_pos": "116.4:-125:198:180.8",
+    "descript": "嘤，嘤，嘤...",
+    "weaponType": "Katana",
+    "attackValue": 820,
+    "critValue": 50,
+    "speedType": "快速攻击速度",
+    "speedValue": 20,
+    "weaponEffect": "每消除一个信号球伤害增加2%，持续5秒（最多叠加10次）\n进入核心被动时额外获得2个信号球",
+    "weaponEffect_Data": "2"
+  }
+}

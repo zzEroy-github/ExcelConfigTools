@@ -1,0 +1,152 @@
+{
+  "1": {
+    "ID": 1,
+    "name": "animaFrame",
+    "descript": "动画的帧速率",
+    "value": "60"
+  },
+  "2": {
+    "ID": 2,
+    "name": "earlyInputTime",
+    "descript": "技能提前输入成功判断时间",
+    "value": "0.4"
+  },
+  "3": {
+    "ID": 3,
+    "name": "nAttackConnectTime",
+    "descript": "普通攻击衔接限制时间",
+    "value": "0.3"
+  },
+  "4": {
+    "ID": 4,
+    "name": "initSkillBallCount",
+    "descript": "初始的技能球数",
+    "value": "4"
+  },
+  "5": {
+    "ID": 5,
+    "name": "showSkillBallCount",
+    "descript": "可展示的技能球数",
+    "value": "8"
+  },
+  "6": {
+    "ID": 6,
+    "name": "sumSkillBallCount",
+    "descript": "总共可获得技能球数",
+    "value": "32"
+  },
+  "7": {
+    "ID": 7,
+    "name": "getOneSkillBallTime",
+    "descript": "自动获得1个技能球间隔时间（秒）",
+    "value": "3"
+  },
+  "8": {
+    "ID": 8,
+    "name": "getOneSkillBallAttackCount",
+    "descript": "获得1个技能球需要的有效攻击次数",
+    "value": "6"
+  },
+  "9": {
+    "ID": 9,
+    "name": "alpha_coreStayTime",
+    "descript": "alpha的核心被动持续时间（秒）",
+    "value": "10"
+  },
+  "10": {
+    "ID": 10,
+    "name": "alpha_coreExtraCount",
+    "descript": "alpha的核心被动额外获得剑气球数量",
+    "value": "8"
+  },
+  "11": {
+    "ID": 11,
+    "name": "minAniSpeed",
+    "descript": "动画速度最小值",
+    "value": "0.3"
+  },
+  "12": {
+    "ID": 12,
+    "name": "maxAniSpeed",
+    "descript": "动画速度最大值",
+    "value": "1.8"
+  },
+  "13": {
+    "ID": 13,
+    "name": "midAniSpeedValue",
+    "descript": "动画速度为1时对照的速度值",
+    "value": "100"
+  },
+  "14": {
+    "ID": 14,
+    "name": "maxAniSpeedValue",
+    "descript": "动画速度为最大时对照的速度值",
+    "value": "200"
+  },
+  "15": {
+    "ID": 15,
+    "name": "oneBallSkillValue",
+    "descript": "单消伤害数值（buff通用）",
+    "value": "1"
+  },
+  "16": {
+    "ID": 16,
+    "name": "doubleBallSkillValue",
+    "descript": "双消伤害数值（buff通用）",
+    "value": "1.7"
+  },
+  "17": {
+    "ID": 17,
+    "name": "tripleBallSkillValue",
+    "descript": "三消伤害数值（buff通用）",
+    "value": "2.5"
+  },
+  "18": {
+    "ID": 18,
+    "name": "midMoveSpeed",
+    "descript": "正常移动速度",
+    "value": "5.5"
+  },
+  "19": {
+    "ID": 19,
+    "name": "critProbability",
+    "descript": "默认暴击概率",
+    "value": "0.1"
+  },
+  "20": {
+    "ID": 20,
+    "name": "critMulti",
+    "descript": "暴击伤害倍率",
+    "value": "2.5"
+  },
+  "21": {
+    "ID": 21,
+    "name": "critMultiRefer",
+    "descript": "增加1倍暴击倍率的会心值",
+    "value": "100"
+  },
+  "22": {
+    "ID": 22,
+    "name": "minAttackFloat",
+    "descript": "伤害随机浮动最小值",
+    "value": "0.95"
+  },
+  "23": {
+    "ID": 23,
+    "name": "maxAttackFloat",
+    "descript": "伤害随机浮动最大值",
+    "value": "1.05"
+  },
+  "24": {
+    "ID": 24,
+    "name": "maxHitDuductNumber",
+    "descript": "伤害飘字显示最大值",
+    "value": "9999999"
+  },
+  "25": {
+    "ID": 25,
+    "name": "hitComboTime",
+    "descript": "连击计时",
+    "value": "2"
+  }
+}
