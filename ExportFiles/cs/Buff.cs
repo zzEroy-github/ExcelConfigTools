@@ -23,4 +23,5 @@ public class BuffConfigData
     public string buffIcon;
     public string buffEffectName;
     public string mainColor;
+    public string performData;
 }

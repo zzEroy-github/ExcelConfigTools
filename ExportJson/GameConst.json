@@ -74,14 +74,14 @@
   "13": {
     "ID": 13,
     "name": "midAniSpeedValue",
-    "descript": "动画速度为1时对照的速度值",
+    "descript": "动画速度为1时对照的迅捷值",
     "value": "100"
   },
   "14": {
     "ID": 14,
     "name": "maxAniSpeedValue",
-    "descript": "动画速度为最大时对照的速度值",
-    "value": "200"
+    "descript": "动画速度为最大时对照的迅捷值",
+    "value": "300"
   },
   "15": {
     "ID": 15,
@@ -105,7 +105,7 @@
     "ID": 18,
     "name": "midMoveSpeed",
     "descript": "正常移动速度",
-    "value": "5.5"
+    "value": "6.5"
   },
   "19": {
     "ID": 19,
@@ -148,5 +148,35 @@
     "name": "hitComboTime",
     "descript": "连击计时",
     "value": "2"
+  },
+  "26": {
+    "ID": 26,
+    "name": "dodgeEnergySum",
+    "descript": "闪避能量总和",
+    "value": "400"
+  },
+  "27": {
+    "ID": 27,
+    "name": "dodgeConsumeEnergy",
+    "descript": "一次闪避消耗的能量",
+    "value": "1"
+  },
+  "28": {
+    "ID": 28,
+    "name": "dodgeEnergyRegainPS",
+    "descript": "闪避能量每秒恢复",
+    "value": "40"
+  },
+  "29": {
+    "ID": 29,
+    "name": "unlimitedSpaceCDTime",
+    "descript": "超算空间冷却时间",
+    "value": "6"
+  },
+  "30": {
+    "ID": 30,
+    "name": "unlimitedSpaceStayTime",
+    "descript": "超算空间持续时间",
+    "value": "6"
   }
 }
