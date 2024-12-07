@@ -20,4 +20,8 @@ public class MonsterInfoConfigData
     public int defenseValue;
     public int speedValue;
     public string aiComponent;
+    public string rewardDrop;
+    public string colliderBoxOnStand;
+    public string colliderBoxOnLie;
+    public string effectsData;
 }

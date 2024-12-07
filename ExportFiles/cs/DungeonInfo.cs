@@ -12,6 +12,7 @@ public class DungeonInfoConfigData
 {
     public int ID;
     public string name;
+    public bool show;
     public int level;
     public string story;
     public string reward;

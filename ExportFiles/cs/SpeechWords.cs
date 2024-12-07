@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
-public class Buff
+public class SpeechWords
 {
-    public Dictionary<int, BuffConfigData> data;
+    public Dictionary<int, SpeechWordsConfigData> data;
 }
 
 [Serializable]
-public class BuffConfigData
+public class SpeechWordsConfigData
 {
     public int ID;
     public string name;
@@ -22,5 +22,6 @@ public class BuffConfigData
     public float stayTime;
     public string buffIcon;
     public string buffEffectName;
+    public string mainColor;
     public string performData;
 }

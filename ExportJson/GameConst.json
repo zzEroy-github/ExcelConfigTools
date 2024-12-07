@@ -9,7 +9,7 @@
     "ID": 2,
     "name": "earlyInputTime",
     "descript": "技能提前输入成功判断时间",
-    "value": "0.4"
+    "value": "0.3"
   },
   "3": {
     "ID": 3,
@@ -37,15 +37,15 @@
   },
   "7": {
     "ID": 7,
-    "name": "getOneSkillBallTime",
-    "descript": "自动获得1个技能球间隔时间（秒）",
-    "value": "3"
+    "name": "getOneSkillBallEnergySum",
+    "descript": "自动获得1个技能球能量总和",
+    "value": "100"
   },
   "8": {
     "ID": 8,
-    "name": "getOneSkillBallAttackCount",
-    "descript": "获得1个技能球需要的有效攻击次数",
-    "value": "6"
+    "name": "getSkillBallEnergyNAttackHit",
+    "descript": "普通攻击有效攻击一次获得回球能量",
+    "value": "18"
   },
   "9": {
     "ID": 9,
@@ -153,30 +153,54 @@
     "ID": 26,
     "name": "dodgeEnergySum",
     "descript": "闪避能量总和",
-    "value": "400"
+    "value": "100"
   },
   "27": {
     "ID": 27,
     "name": "dodgeConsumeEnergy",
     "descript": "一次闪避消耗的能量",
-    "value": "1"
+    "value": "25"
   },
   "28": {
     "ID": 28,
     "name": "dodgeEnergyRegainPS",
     "descript": "闪避能量每秒恢复",
-    "value": "40"
+    "value": "7"
   },
   "29": {
     "ID": 29,
     "name": "unlimitedSpaceCDTime",
     "descript": "超算空间冷却时间",
-    "value": "6"
+    "value": "36"
   },
   "30": {
     "ID": 30,
     "name": "unlimitedSpaceStayTime",
     "descript": "超算空间持续时间",
-    "value": "6"
+    "value": "4"
+  },
+  "31": {
+    "ID": 31,
+    "name": "affactedLieRigidityTime",
+    "descript": "被击躺倒时间",
+    "value": "1"
+  },
+  "32": {
+    "ID": 32,
+    "name": "affactedFlyForceY",
+    "descript": "被击浮空时受到向上的力",
+    "value": "3"
+  },
+  "33": {
+    "ID": 33,
+    "name": "monsterCommonSkillBelongId",
+    "descript": "怪物通用的技能归属Id",
+    "value": "-101"
+  },
+  "34": {
+    "ID": 34,
+    "name": "getSkillBallEnergyPS",
+    "descript": "每秒获得的回球能量",
+    "value": "15"
   }
 }

@@ -12,6 +12,7 @@
     "stayTime": 1000.0,
     "buffIcon": "skillballui_alpha_blue",
     "buffEffectName": "alpha_blueBall",
+    "mainColor": "495CFF",
     "performData": "ghostShadow:0.2:6786FB"
   }
 }

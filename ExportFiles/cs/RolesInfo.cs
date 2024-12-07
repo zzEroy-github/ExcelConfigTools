@@ -18,6 +18,7 @@ public class RolesInfoConfigData
     public string iconName;
     public string iconTransform;
     public string roleDescribe;
+    public string mainColor;
     public int attackValue;
     public float attackGrow;
     public int healthValue;
@@ -26,4 +27,10 @@ public class RolesInfoConfigData
     public float defenseGrow;
     public int speedValue;
     public int critValue;
+    public float ultimateSkillEnery;
+    public float ultimateSkillEneryRegainPS;
+    public float ultimateSkillEneryRegainHit;
+    public string colliderBoxOnStand;
+    public string colliderBoxOnLie;
+    public string effectsData;
 }

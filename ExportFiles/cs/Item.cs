@@ -15,10 +15,4 @@ public class ItemConfigData
     public int star;
     public string icon;
     public string descript;
-    public int ideologyPos;
-    public int ideologyClassId;
-    public string ideologyEffect_Two;
-    public string ideologyEffect_Two_Data;
-    public string ideologyEffect_Four;
-    public string ideologyEffect_Four_Data;
 }

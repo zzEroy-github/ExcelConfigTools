@@ -13,6 +13,7 @@ public class SkillConfigData
     public int ID;
     public int belongId;
     public int type;
+    public string monsterAI;
     public int buffId;
     public string notes;
     public string name;

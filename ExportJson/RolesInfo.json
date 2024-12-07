@@ -8,14 +8,21 @@
     "iconName": "select_alpha_dao",
     "iconTransform": null,
     "roleDescribe": "华丽的技能衔接令人应接不暇，超凡的爆发伤害往往能将敌人瞬间击溃",
+    "mainColor": "495CFF",
     "attackValue": 212,
     "attackGrow": 1.3,
-    "healthValue": 6000,
+    "healthValue": 100000,
     "healthGrow": 1.1,
-    "defenseValue": 502,
+    "defenseValue": 5,
     "defenseGrow": 1.0,
     "speedValue": 66,
-    "critValue": 30
+    "critValue": 30,
+    "ultimateSkillEnery": 100.0,
+    "ultimateSkillEneryRegainPS": 0.65,
+    "ultimateSkillEneryRegainHit": 0.8,
+    "colliderBoxOnStand": "-0.12:-0.13:1.56:3.4",
+    "colliderBoxOnLie": "0:-1.08:3.78:1.51",
+    "effectsData": "{\"shadow\":{\"_Shadow_Alpha\":0.8,\"_Shadow_OffsetX\":-0.175,\"_Shadow_OffsetY\":-0.41,\"_Shadow_Slope\":-0.5,\"_Shadow_ScaleY\":0.68}}"
   },
   "2": {
     "ID": 2,
@@ -26,6 +33,7 @@
     "iconName": "select_zhenli_gong",
     "iconTransform": "6,-5.7,0.82,0.82",
     "roleDescribe": null,
+    "mainColor": null,
     "attackValue": 0,
     "attackGrow": 0.0,
     "healthValue": 0,
@@ -33,6 +41,12 @@
     "defenseValue": 0,
     "defenseGrow": 0.0,
     "speedValue": 0,
-    "critValue": 0
+    "critValue": 0,
+    "ultimateSkillEnery": 0.0,
+    "ultimateSkillEneryRegainPS": 0.0,
+    "ultimateSkillEneryRegainHit": 0.0,
+    "colliderBoxOnStand": null,
+    "colliderBoxOnLie": null,
+    "effectsData": null
   }
 }
